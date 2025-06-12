@@ -1,6 +1,6 @@
 'use client';
 
-import { home, benefits, steps, openness } from "../lib/content";
+import { home, benefits, steps, openness, general } from "../lib/content";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import ClippedDiv from "@/components/ClippedDiv";
@@ -196,7 +196,7 @@ export default function Home() {
       <footer>
         <div className="bg-[#1B0D00] dark:bg-orange-200 text-stone-50 dark:text-stone-800 text-center pb-6">
           <p className="text-sm lg:text-base opacity-70">Made with ❤️ by students from Otaniemi</p>
-          <p className="text-xs lg:text-sm mt-2 opacity-50">© {new Date().getFullYear()} OtaMaps ry. All rights reserved.</p>
+          <p className="text-xs lg:text-sm mt-2 opacity-50">© {new Date().getFullYear()} {general.organizationName}. All rights reserved.</p>
         </div>
       </footer>
     </div>
