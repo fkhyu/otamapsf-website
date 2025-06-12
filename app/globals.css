@@ -24,3 +24,41 @@ body {
   color: var(--foreground);
   /* font-family: Arial, Helvetica, sans-serif; */
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.moving-svg-container {
+  display: flex;
+  width: 200%; /* 3428 * 2 */
+  padding-top: 2%;
+  animation: moveLeftToRight 200s linear infinite;
+  will-change: transform;
+}
+
+.world-strip {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+
+@keyframes moveLeftToRight {
+  0% {
+    transform: translateX(-100%);
+  }
+  99.9999% {
+    transform: translateX(0); /* move by one map width */
+  }
+  100% {
+    transform: translateX(-100%); /* reset to start */
+  }
+}
+
+.circle { 
+  /* clip-path: inset(0 0 45% 0 round 100%); */
+  clip-path: path("M 0 600 A 600 600 0 0 1 1200 600 Q 579 792 0 600 Z");
+
+
+
+}
