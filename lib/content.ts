@@ -48,22 +48,22 @@ export const benefits = {
 
 export const steps = [
     {
-      number: "01",
+      number: "1",
       title: "Download the App",
       description: "Get OtaMapSF from App Store or Google Play and create your account to start exploring."
     },
     {
-      number: "02", 
+      number: "2", 
       title: "Explore Places",
       description: "Discover amazing locations around you with our interactive map interface."
     },
+    // {
+    //   number: "03",
+    //   title: "Plan Your Route", 
+    //   description: "Create custom routes and save your favorite destinations for later."
+    // },
     {
-      number: "03",
-      title: "Plan Your Route", 
-      description: "Create custom routes and save your favorite destinations for later."
-    },
-    {
-      number: "04",
+      number: "3",
       title: "Share & Connect",
       description: "Share your discoveries with friends and connect with the community."
     }
