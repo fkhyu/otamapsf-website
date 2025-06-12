@@ -197,6 +197,9 @@ export default function Home() {
         <div className="bg-[#1B0D00] dark:bg-orange-200 text-stone-50 dark:text-stone-800 text-center pb-6">
           <p className="text-sm lg:text-base opacity-70">Made with ❤️ by students from Otaniemi</p>
           <p className="text-xs lg:text-sm mt-2 opacity-50">© {new Date().getFullYear()} {general.organizationName}. All rights reserved.</p>
+          <div className="mt-2">
+            <a href="/privacy-policy" className="hover:underline text-xs lg:text-sm opacity-50">Privacy Policy</a>
+          </div>
         </div>
       </footer>
     </div>
