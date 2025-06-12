@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import ClippedDiv from "@/components/ClippedDiv";
 import { detectOS } from "@/utils/osDetect";
+import { div } from "framer-motion/client";
 
 export default function Home() {
   const stepsRef = useRef<HTMLDivElement>(null);
@@ -44,7 +45,7 @@ export default function Home() {
                 </a>
                 <a
                   className="px-8 py-3 bg-orange-300/60 rounded-[20px] inline-flex justify-center items-center gap-2 text-yellow-900 text-lg lg:text-xl font-medium"
-                  href={home.downloadLink}
+                  href={home.downloadRedirect}
                 >
                   {home.downloadText}
                 </a>
@@ -142,8 +143,8 @@ export default function Home() {
 
 
       {/* By students */}
-      <section className="min-h-[100vmin] flex flex-col items-center justify-center mx-auto z-10">
-        <div className="flex flex-col items-center justify-center w-full h-full">
+      <section className="min-h-[100vmin] flex flex-col items-center justify-center mx-auto">
+        <div className="flex flex-col items-center justify-center w-full h-full z-[10]">
           <div className="flex flex-col items-center justify-center max-w-screen-xl text-center gap-y-6 px-6">
             <h2 className="justify-start text-yellow-800 text-3xl lg:text-6xl font-semibold">
               Made by Students, Shared with the World
@@ -161,7 +162,7 @@ export default function Home() {
       </section>
       <div className="w-full h-[6vh] bg-[#1B0D00]"></div>
 
-      <section id="download" className="min-h-[70vh] flex items-center justify-start mx-auto bg-[#1B0D00] relative z-[-1]">
+      <section id="download" className="min-h-[70vh] flex items-center justify-center mx-auto bg-[#1B0D00] relative">
           <div className="flex flex-col lg:flex-row w-full items-center justify-center lg:justify-between text-center gap-y-6 max-w-screen-2xl mx-auto">
             <div className="flex flex-col items-center lg:items-start gap-y-[20px]">
               <div className="text-stone-50 text-4xl lg:text-8xl font-semibold lg:text-start lg:leading-[150px]">Ready to begin?</div>
@@ -171,20 +172,29 @@ export default function Home() {
             <div>
               {detectOS() === 'iOS' || detectOS() === 'Android' ? (
                 <a
-                  className="px-8 py-3 bg-orange-300/60 rounded-[20px] inline-flex justify-center items-center gap-2 text-yellow-900 text-lg lg:text-xl font-medium"
+                  className="px-8 py-3 bg-orange-300/60 rounded-[20px] inline-flex justify-center items-center gap-2 text-white text-lg lg:text-xl font-medium"
                   href={home.downloadLink}
                 >
                   {home.downloadText}
                 </a>
               ) : (
-                <div className="text-yellow-900 text-lg lg:text-xl font-normal">Available on iOS and Android</div>
+                <div className="flex flex-col items-center gap-y-2">
+                  <div className="text-yellow-900 text-lg lg:text-xl font-normal">Available on iOS and Android</div>
+                  <button
+                    className="px-8 py-3 bg-orange-300/60 rounded-[20px] inline-flex justify-center items-center gap-2 text-white text-lg lg:text-xl font-medium"
+                    onClick={() => window.location.href = home.downloadLink}
+                  >
+                    {home.downloadText}
+                  </button>
+                </div>
+
               )}
             </div>
           </div>
       </section>
 
       <footer>
-        <div className="bg-[#1B0D00] text-stone-50 text-center py-6">
+        <div className="bg-[#1B0D00] text-stone-50 text-center pb-6">
           <p className="text-sm lg:text-base opacity-70">Made with ❤️ by students from Otaniemi</p>
           <p className="text-xs lg:text-sm mt-2 opacity-50">© {new Date().getFullYear()} OtaMaps ry. All rights reserved.</p>
         </div>

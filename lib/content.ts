@@ -6,7 +6,8 @@ export const home = {
     description: "OtaMapSF is your interactive travel companion for discovering San Francisco's key spots while meeting others on the same journey. Whether you're here for tech, creativity, or community—we help you navigate it all, effortlessly.",
     learnMoreLink: "#benefits",
     learnMoreText: "Learn more",
-    downloadLink: "#download",
+    downloadLink: "https://github.com/onrecc/findoors-app/releases",
+    downloadRedirect: "#download",
     downloadText: "Download",
     sections: {
         hero: {
