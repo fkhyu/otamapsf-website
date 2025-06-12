@@ -68,3 +68,8 @@ export const steps = [
       description: "Share your discoveries with friends and connect with the community."
     }
 ];
+
+export const openness = {
+    title: "Made by Students, Shared with the World",
+    description: "This isn’t a polished corporate product—it’s a tool built by students who wanted to solve a real-world challenge. It’s open source, and you're welcome to take it further.",
+}

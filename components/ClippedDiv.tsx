@@ -25,7 +25,7 @@ export default function Globe() {
   return (
     <div
       ref={ref}
-      className="relative w-[120vw] h-[69vw] bg-[#44449D] shadow-2xl overflow-hidden mt-12"
+      className="relative w-[120vw] h-[69vw] bg-[#44449D] shadow-2xl overflow-hidden mt-18"
       style={{
         clipPath: path ? `path("${path}")` : undefined,
         WebkitClipPath: path ? `path("${path}")` : undefined,
