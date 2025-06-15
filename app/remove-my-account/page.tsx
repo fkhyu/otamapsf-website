@@ -1,11 +1,16 @@
 "use client";
 export const dynamic = "force-dynamic";
+export const prerender = false;
 
-import { useState } from "react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function RemoveAccount() {
+  // Supabase client will be loaded dynamically on the browser
+  const [supabase, setSupabase] = useState<any>(null);
+  const [isSupabaseReady, setIsSupabaseReady] = useState(false);
+
+  // UI state
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
@@ -13,9 +18,26 @@ export default function RemoveAccount() {
   const [otpSent, setOtpSent] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
-  
+
   const router = useRouter();
-  const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    // Dynamically import the Supabase auth helper on the client only
+    import("@supabase/auth-helpers-nextjs").then(({ createClientComponentClient }) => {
+      const client = createClientComponentClient({
+        // Hardcode your Supabase project URL and anon key here
+        supabaseUrl: "https://qlbtkzikcdfnjhuxnbsn.supabase.co",
+        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFsYnRremlrY2RmbmpodXhuYnNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc5MDEyODAsImV4cCI6MjA2MzQ3NzI4MH0.cibjs-dCzV-_xSbAeOJYxY5NAt8Srp0uWuXqmUk9_VQ"
+      });
+      setSupabase(client);
+      setIsSupabaseReady(true);
+    });
+  }, []);
+
+  // Ensure the Supabase client is ready before rendering any UI
+  if (!isSupabaseReady) {
+    return <div className="p-6 text-center">Loading...</div>;
+  }
 
   // Step 1: Send OTP
   const handleSendOTP = async () => {
@@ -63,12 +85,11 @@ export default function RemoveAccount() {
     }
   };
 
-  // Step 3: Directly insert into `to_be_deleted`
+  // Step 3: Mark for deletion & sign out
   const handleDeleteAccount = async () => {
     setIsLoading(true);
     setError(null);
     try {
-      // 1) Get session (must be set after OTP verification)
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
         setError("Session expired. Please verify again.");
@@ -78,7 +99,6 @@ export default function RemoveAccount() {
         return;
       }
 
-      // 2) Insert a row into `to_be_deleted`
       const { error: insertError } = await supabase
         .from("to_be_deleted")
         .insert({ user_id: session.user.id });
@@ -88,7 +108,6 @@ export default function RemoveAccount() {
         return;
       }
 
-      // 3) Sign out and redirect
       await supabase.auth.signOut();
       router.push("/account-deleted");
     } catch (err) {
@@ -99,7 +118,7 @@ export default function RemoveAccount() {
     }
   };
 
-  // Screens remain the same as before:
+  // Render screens
   const renderInitialScreen = () => (
     <div>
       <div className="mb-6">
