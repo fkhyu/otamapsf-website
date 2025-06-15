@@ -20,7 +20,8 @@ export const paragraphs = [
             "• Location Data\n" +
             "  • Real-time GPS location (used to determine check-ins at POIs)\n" +
             "• Usage Data\n" +
-            "  • Participation in events and visits to POIs",
+            "  • Participation in events and visits to POIs" +
+            "  • Images you upload (e.g., profile picture, check-in photos)",
         id: "data-collection"
     },
     {
@@ -29,13 +30,14 @@ export const paragraphs = [
             "• Authenticate users via email OTP login\n" +
             "• Display user profiles (name, age, country) within the app for networking\n" +
             "• Track check-ins and visits to POIs\n" +
-            "• Help organizers understand participant activity during the Neighborhood program",
+            "• Help organizers understand participant activity during the Neighborhood program\n" +
+            "• Check-in and profile picture images are shared to other users",
         id: "data-usage"
     },
     {
         title: "Data Sharing",
         text: "We do not sell your data. Your data may be shared in the following cases:\n" +
-            "• With other app users (name, age, country) to facilitate networking\n" +
+            "• With other app users (name, age, country, images) to facilitate networking\n" +
             "• With other app users (real-time GPS location) when you choose to share your location\n" +
             "• With Neighborhood organizers to verify event and POI participation\n" +
             "• With service providers (e.g., authentication, analytics, hosting) strictly as needed to operate the app\n" +
