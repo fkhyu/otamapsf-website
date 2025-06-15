@@ -1,6 +1,5 @@
 "use client";
 export const dynamic = "force-dynamic";
-export const prerender = false;
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -25,9 +24,8 @@ export default function RemoveAccount() {
     // Dynamically import the Supabase auth helper on the client only
     import("@supabase/auth-helpers-nextjs").then(({ createClientComponentClient }) => {
       const client = createClientComponentClient({
-        // Hardcode your Supabase project URL and anon key here
-        supabaseUrl: "https://qlbtkzikcdfnjhuxnbsn.supabase.co",
-        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFsYnRremlrY2RmbmpodXhuYnNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc5MDEyODAsImV4cCI6MjA2MzQ3NzI4MH0.cibjs-dCzV-_xSbAeOJYxY5NAt8Srp0uWuXqmUk9_VQ"
+        supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://qlbtkzikcdfnjhuxnbsn.supabase.co",
+        supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "your-anon",
       });
       setSupabase(client);
       setIsSupabaseReady(true);
