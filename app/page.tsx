@@ -199,6 +199,7 @@ export default function Home() {
           <p className="text-xs lg:text-sm mt-2 opacity-50">© {new Date().getFullYear()} {general.organizationName}. All rights reserved.</p>
           <div className="mt-2">
             <a href="/privacy-policy" className="hover:underline text-xs lg:text-sm opacity-50">Privacy Policy</a>
+            <a href="/remove-my-account" className="hover:underline text-xs lg:text-sm opacity-50">Request data deletion</a>
           </div>
         </div>
       </footer>
