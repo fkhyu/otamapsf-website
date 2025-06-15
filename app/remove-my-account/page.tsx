@@ -24,7 +24,7 @@ export default function RemoveAccount() {
     // Dynamically import the Supabase auth helper on the client only
     import("@supabase/auth-helpers-nextjs").then(({ createClientComponentClient }) => {
       const client = createClientComponentClient({
-        supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://qlbtkzikcdfnjhuxnbsn.supabase.co",
+        supabaseUrl: "https://qlbtkzikcdfnjhuxnbsn.supabase.co",
         supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "your-anon",
       });
       setSupabase(client);
