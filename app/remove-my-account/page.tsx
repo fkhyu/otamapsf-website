@@ -25,7 +25,7 @@ export default function RemoveAccount() {
     import("@supabase/auth-helpers-nextjs").then(({ createClientComponentClient }) => {
       const client = createClientComponentClient({
         supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || "https://qlbtkzikcdfnjhuxnbsn.supabase.co",
-        supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "your-anon",
+        supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFsYnRremlrY2RmbmpodXhuYnNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc5MDEyODAsImV4cCI6MjA2MzQ3NzI4MH0.cibjs-dCzV-_xSbAeOJYxY5NAt8Srp0uWuXqmUk9_VQ",
       });
       setSupabase(client);
       setIsSupabaseReady(true);
@@ -120,8 +120,8 @@ export default function RemoveAccount() {
   const renderInitialScreen = () => (
     <div>
       <div className="mb-6">
-        <h2 className="text-xl font-semibold mb-2">What happens when you delete your account?</h2>
-        <ul className="list-disc pl-5 space-y-1">
+        <h2 className="text-xl font-semibold mb-2 text-black">What happens when you delete your account?</h2>
+        <ul className="list-disc pl-5 space-y-1 text-black/60">
           <li>All your personal information will be permanently deleted</li>
           <li>Your profile and data will be completely removed from our systems</li>
           <li>You won't be able to recover your account or data after deletion</li>
@@ -145,20 +145,21 @@ export default function RemoveAccount() {
 
   const renderAuthScreen = () => (
     <div>
-      <p className="mb-4 font-medium">
+      <p className="mb-4 font-medium text-black">
         To verify your identity, enter your account’s email:
       </p>
       {error && <p className="mb-4 text-red-600 bg-red-50 p-2 rounded">{error}</p>}
       {!otpSent ? (
         <>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2 text-sm font-medium">Email Address</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium  text-black/70">Email Address</label>
             <input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded border-gray-200 text-black/50"
+              placeholder="me@exmaple.com"
               required
             />
           </div>
@@ -174,13 +175,13 @@ export default function RemoveAccount() {
         <>
           <div className="mb-4">
             <p className="text-green-600 mb-2">Code sent to {email}</p>
-            <label htmlFor="otp" className="block mb-2 text-sm font-medium">Enter Verification Code</label>
+            <label htmlFor="otp" className="block mb-2 text-sm font-medium text-black">Enter Verification Code</label>
             <input
               id="otp"
               type="text"
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border rounded text-black/50 border-gray-200"
               required
             />
           </div>
@@ -238,7 +239,7 @@ export default function RemoveAccount() {
 
   return (
     <div className="max-w-md mx-auto my-8 p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-6 text-center">Delete Your Account</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center  text-black">Delete Your Account</h1>
       {!showConfirmation && renderInitialScreen()}
       {showConfirmation && !authenticated && renderAuthScreen()}
       {showConfirmation && authenticated && renderConfirmationScreen()}
