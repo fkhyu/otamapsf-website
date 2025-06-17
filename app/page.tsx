@@ -2,10 +2,11 @@
 
 import { home, benefits, steps, openness, general } from "../lib/content";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ClippedDiv from "@/components/ClippedDiv";
 import { detectOS } from "@/utils/osDetect";
 import { div } from "framer-motion/client";
+import { faqItems } from "../lib/faq";
 
 export default function Home() {
   const stepsRef = useRef<HTMLDivElement>(null);
@@ -15,6 +16,32 @@ export default function Home() {
   })
 
   const stepProgress = useTransform(scrollYProgress, [0, 1], [0, 4]);
+
+  function FAQ({ question, answer }: { question: string; answer: string }) {
+    const [open, setOpen] = useState(false);
+    return (
+      <div className={`transition-all duration-500 ease-in-out ${open ? 'shadow-2xl scale-[1.025] bg-orange-50/40 dark:bg-orange-900/20' : 'bg-transparent'} rounded-3xl hover:scale-[1.01] hover:shadow-lg` }>
+        <button
+          className="flex justify-between items-center w-full py-6 px-6 text-left focus:outline-none transition-all duration-300 rounded-3xl group"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+        >
+          <span className="text-xl md:text-2xl font-semibold text-orange-600 dark:text-orange-300 group-hover:underline underline-offset-4 transition-all duration-300">
+            {question}
+          </span>
+          <span className={`ml-4 text-orange-400 text-3xl transition-transform duration-500 ${open ? 'rotate-45' : ''}`}>+</span>
+        </button>
+        <div
+          className="overflow-hidden transition-all duration-500 px-6"
+          style={{ maxHeight: open ? 300 : 0, opacity: open ? 1 : 0, paddingBottom: open ? 20 : 0 }}
+        >
+          <div className="text-stone-700 dark:text-orange-100 text-lg pt-2 pb-4 animate-fade-in">
+            {answer}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="font-[family-name:var(--font-poppins)]">
@@ -141,6 +168,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section>
+        <div className="py-28 min-h-[30vh] flex flex-col items-center justify-center mx-auto px-2 md:px-8">
+          <div className="w-full max-w-3xl md:max-w-5xl mx-auto mb-24">
+            <h2 className="text-3xl lg:text-5xl font-extrabold text-orange-500 dark:text-orange-400 text-center mb-12 tracking-tight drop-shadow-lg">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-6">
+              {faqItems.map((faq, i) => (
+                <FAQ key={i} question={faq.question} answer={faq.answer} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* By students */}
       <section className="min-h-[100vmin] flex flex-col items-center justify-center mx-auto">
