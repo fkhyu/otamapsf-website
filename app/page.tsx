@@ -20,13 +20,13 @@ export default function Home() {
   function FAQ({ question, answer }: { question: string; answer: string }) {
     const [open, setOpen] = useState(false);
     return (
-      <div className={`transition-all duration-500 ease-in-out ${open ? 'shadow-2xl scale-[1.025] bg-orange-50/40 dark:bg-orange-900/20' : 'bg-transparent'} rounded-3xl hover:scale-[1.01] hover:shadow-lg` }>
+      <div className={`transition-all duration-500 ease-in-out ${open ? 'shadow-2xl shadow-stone-700/10 scale-[1.025] bg-orange-50/40 dark:bg-stone-200' : 'bg-transparent'} rounded-3xl hover:scale-[1.01] hover:shadow-lg` }>
         <button
           className="flex justify-between items-center w-full py-6 px-6 text-left focus:outline-none transition-all duration-300 rounded-3xl group"
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
         >
-          <span className="text-xl md:text-2xl font-semibold text-orange-600 dark:text-orange-300 group-hover:underline underline-offset-4 transition-all duration-300">
+          <span className={`text-xl md:text-2xl font-medium text-orange-800/60 dark:text-orange-100/90 transition-all duration-300 ${open ? 'text-orange-800 dark:text-orange-600' : ''}`}>
             {question}
           </span>
           <span className={`ml-4 text-orange-400 text-3xl transition-transform duration-500 ${open ? 'rotate-45' : ''}`}>+</span>
@@ -35,7 +35,7 @@ export default function Home() {
           className="overflow-hidden transition-all duration-500 px-6"
           style={{ maxHeight: open ? 300 : 0, opacity: open ? 1 : 0, paddingBottom: open ? 20 : 0 }}
         >
-          <div className="text-stone-700 dark:text-orange-100 text-lg pt-2 pb-4 animate-fade-in">
+          <div className={`dark:text-orange-100 text-lg pt-2 pb-4 animate-fade-in ${open ? 'text-stone-700 dark:text-stone-500' : ''}`}>
             {answer}
           </div>
         </div>
@@ -169,11 +169,11 @@ export default function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section>
+      <section className="mb-48">
         <div className="py-28 min-h-[30vh] flex flex-col items-center justify-center mx-auto px-2 md:px-8">
           <div className="w-full max-w-3xl md:max-w-5xl mx-auto mb-24">
-            <h2 className="text-3xl lg:text-5xl font-extrabold text-orange-500 dark:text-orange-400 text-center mb-12 tracking-tight drop-shadow-lg">
-              Frequently Asked Questions
+            <h2 className="text-3xl lg:text-5xl font-bold text-orange-400 dark:text-orange-400 text-center mb-12 tracking-tight">
+              FAQs
             </h2>
             <div className="space-y-6">
               {faqItems.map((faq, i) => (
